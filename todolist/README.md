@@ -5,12 +5,14 @@
 ###SQL queries
  
  1. get all statuses, not repeating, alphabetically ordered
+
     ```sql 
     SELECT DISTINCT status
     FROM tasks
     ORDER BY status
     ```
  2. get the count of all tasks in each project, order by tasks count descending
+
     ```sql
     SELECT p.name AS 'Project', count(t.id) AS 'Tasks'
     FROM tasks t, projects p
@@ -19,6 +21,7 @@
     ORDER BY count(t.id) DESC
     ```
  3. get the count of all tasks in each project, order by projects names
+
     ```sql
     SELECT p.name AS 'Project', count(t.id) AS 'Tasks'
     FROM tasks t, projects p
@@ -27,6 +30,7 @@
     ORDER BY p.name
     ```
  4. get the tasks for all projects having the name beginning with “N” letter
+
     ```sql
     SELECT *
     FROM tasks
@@ -34,6 +38,7 @@
     ```
  5. get the list of all projects containing the ‘a’ letter in the middle of the name, and
     show the tasks count near each project. Mention that there can exist projects without tasks and tasks with project_id=NULL
+
     ```sql
     SELECT p.name AS 'Project', count(t.id) AS 'Tasks'
     FROM tasks t,  projects p
@@ -43,6 +48,7 @@
     GROUP BY p.name
     ```
  6. get the list of tasks with duplicate names. Order alphabetically
+
      ```sql
     SELECT *, count(*)
     FROM tasks
@@ -52,6 +58,7 @@
      ```
  7. get the list of tasks having several exact matches of both name and status, from
     the project ‘Garage’. Order by matches count
+
     ```sql
     SELECT t.*, count(t.id)
     FROM tasks t, projects p
@@ -61,6 +68,7 @@
     ```
  8. get the list of project names having more than 10 tasks in status ‘completed’. Order
     by project_id 
+
     ```sql
     SELECT p.name
     FROM tasks t, projects p
