@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+<h1><%= @project.name %></h1>
+
+<h2>Add task</h2>
+<%= form_for([@project, @project.tasks.build]) do |f| %>
+    <p>
+      <%= f.text_area :name %>
+    </p>
+
+    <p>
+      <%= f.submit %>
+    </p>
+<% end %>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>
