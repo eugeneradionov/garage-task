@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170228170852) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "projects", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -25,7 +28,8 @@ ActiveRecord::Schema.define(version: 20170228170852) do
     t.datetime "updated_at",                 null: false
     t.boolean  "completed",  default: false
     t.integer  "priority",   default: 1
-    t.index ["project_id"], name: "index_tasks_on_project_id"
+    t.index ["project_id"], name: "index_tasks_on_project_id", using: :btree
   end
 
+  add_foreign_key "tasks", "projects"
 end
