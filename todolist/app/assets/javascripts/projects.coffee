@@ -3,6 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 jQuery ->
+  $('.field').val('')
+jQuery ->
   $('.tasks').sortable
     axis: 'y'
     update: ->
