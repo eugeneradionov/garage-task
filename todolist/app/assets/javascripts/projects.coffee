@@ -2,10 +2,15 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-jQuery ->
-  $('.field').val('')
-jQuery ->
-  $('.tasks').sortable
-    axis: 'y'
-    update: ->
-      $.post($(this).data('update-url'), $(this).sortable('serialize') )
+ready = ->
+  jQuery ->
+    $('.field').val('')
+  jQuery ->
+    $('.tasks').sortable
+      axis: 'y'
+      update: ->
+        $.post($(this).data('update-url'), $(this).sortable('serialize') )
+
+$(document).ready(ready)
+$(document).on 'turbolinks:load', ->
+  ready()

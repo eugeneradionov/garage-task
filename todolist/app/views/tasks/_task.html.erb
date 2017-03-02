@@ -5,12 +5,14 @@
 <% end %>
 
 <%= check_box_tag 'complete', task.completed, task.completed,
-                  :data => { remote: true, url: url_for(
-                      action: 'complete',
-                      id: task.id,
-                      complete: task.completed,
-                      controller: :tasks),
-                             method: :put} %>
+                  :data => {
+                      remote: true,
+                      url: url_for(
+                          action: 'complete',
+                          id: task.id,
+                          complete: task.completed,
+                          controller: :tasks),
+                      method: :put } %>
 <%= task.name %>
 
 <%= link_to '', [task.project, task],
