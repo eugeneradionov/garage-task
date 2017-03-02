@@ -58,8 +58,12 @@ class TasksController < ApplicationController
     head :no_content
   end
 
+  def deadline
+
+  end
+
   private
     def task_params
-      params.require(:task).permit(:name)
+      params.require(:task).permit(:name, :project_id)
     end
 end
