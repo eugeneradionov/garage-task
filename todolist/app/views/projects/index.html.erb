@@ -2,8 +2,8 @@
   <h1>ToDo List</h1>
   <div class="panel-group">
     <% @projects.each do |project| %>
+        
         <div class="panel panel-default">
-
           <% @tasks =  project.tasks.sort_by {|t| t.priority} %>
 
           <div class="panel-heading">
@@ -27,9 +27,7 @@
 
           <div class="sortable-in">
             <div class="panel-body tasks" data-update-url="<%= sort_project_tasks_url(project) %>">
-              <% @tasks.each do |task| %>
-                <%= render 'tasks/task', task: task, project: project %>
-              <% end %>
+              <%= render (@tasks), project: project %>
             </div>
           </div>
 
