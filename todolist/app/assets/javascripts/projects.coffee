@@ -7,10 +7,17 @@ ready = ->
     $('.field').val('')
   jQuery ->
     $('.tasks').sortable
-      axis: 'y'
+      containment: ".sortable-in"
+      handle: "#move"
+      items: "> p"
       update: ->
         $.post($(this).data('update-url'), $(this).sortable('serialize') )
 
 $(document).ready(ready)
 $(document).on 'turbolinks:load', ->
   ready()
+$ ->
+  $('#datepicker').datepicker()
+    #showOn: 'button'
+    #buttonImageOnly: true
+    #buttonText: 'Select deadline'
