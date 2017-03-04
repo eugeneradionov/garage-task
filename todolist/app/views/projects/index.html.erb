@@ -1,30 +1,40 @@
 <div class="container">
   <h1>ToDo List</h1>
   <div class="panel-group">
-  <% @projects.each do |project| %>
+    <% @projects.each do |project| %>
         <div class="panel panel-default">
 
           <% @tasks =  project.tasks.sort_by {|t| t.priority} %>
 
           <div class="panel-heading">
             <span class="header"><%= project.name %></span>
-            <%= link_to '', project, method: :delete,
-                        data: { confirm: 'Are you sure?' }, remote: true, class: 'controls', id: 'delete' %>
-            <%= link_to '', edit_project_path(project), class: 'controls', id: 'edit'%>
+
+            <%= link_to [project], method: :delete,
+                        data: { confirm: 'Are you sure?' },
+                        remote: true do %>
+                <span id="delete" class="glyphicon glyphicon-trash controls"></span>
+            <% end %>
+
+            <%= link_to edit_project_path(project) do %>
+                <span id="edit" class="glyphicon glyphicon-pencil controls"></span>
+            <% end %>
+
             <%= form_for([project, project.tasks.build], remote: true) do |f| %>
                 <%= f.text_field :name, placeholder: 'Add a new task...', class: 'field', remote: true %>
                 <%= f.submit 'Add task', remote: true, class: 'add_task' %>
             <% end %>
           </div>
 
-          <div class="panel-body tasks" data-update-url="<%= sort_project_tasks_url(project) %>">
-            <% @tasks.each do |task| %>
-              <%= render 'tasks/task', :task => task, :project => project %>
-            <% end %>
+          <div class="sortable-in">
+            <div class="panel-body tasks" data-update-url="<%= sort_project_tasks_url(project) %>">
+              <% @tasks.each do |task| %>
+                <%= render 'tasks/task', task: task, project: project %>
+              <% end %>
+            </div>
           </div>
 
         </div>
-  <% end %>
+    <% end %>
   </div>
 
   <div id="add_list">
