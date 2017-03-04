@@ -7,7 +7,7 @@
 #add_list,
 #new_project,
 .edit_project {
-  width: 50%;
+  width: 55%;
   margin: auto;
 }
 
@@ -17,34 +17,47 @@
   margin-top: 10px;
 }
 
-
-.tasks p{
-  border: 1px solid darkgrey;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  margin-bottom: 5px;
-  cursor: pointer;
-  font-size: 1.5em;
-  height: 1.3em;
-}
-
 .header {
   font-size: 2em;
 }
 
 .completed {
   text-decoration: line-through;
-  color: #666666;
+  color: #888888;
 }
 
 .tasks p:hover {
   background-color: antiquewhite;
 }
 
+.tasks p {
+  font-size: 1.2em;
+}
+
+#edit,
+#delete,
+#move {
+  color: black;
+  font-size: 1.6rem;
+}
+
+#edit,
+#move {
+  margin-right: 0.7em;
+}
+
+#move:hover {
+  cursor: move;
+}
+
 .controls {
-  margin-right: 0.4em;
   float: right;
+}
+
+.controls:hover {
+  background-color: transparent;
+  text-decoration: none;
+  color: black;
 }
 
 .field {
@@ -54,28 +67,6 @@
 .add_task {
   width: 15%;
   text-align: center;
-}
-
-#edit:before {
-  background-image: url("edit-e3c6db5e2cb51f91390d8979ab65e636981542d21935fe752ed6076399cdc000.png");
-}
-
-#delete:before {
-  background-image: url("delete-ece9a9d5fefa79945a9914541290110adf8302eabc29ce3e21a1cdba4f2df699.png");
-}
-
-#delete:before,
-#edit:before {
-  background-size: 20px, 20px;
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  content: "";
-}
-
-#delete:hover,
-#edit:hover {
-  background-color: transparent;
 }
 
 #add_list,
