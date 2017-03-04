@@ -21,7 +21,7 @@
 
             <%= form_for([project, project.tasks.build], remote: true) do |f| %>
                 <%= f.text_field :name, placeholder: 'Add a new task...', class: 'field', remote: true %>
-                <%= f.submit 'Add task', remote: true, class: 'add_task' %>
+                <%= f.submit 'Add task', remote: true, class: 'btn btn-success btn-sm' %>
             <% end %>
           </div>
 
@@ -37,7 +37,10 @@
     <% end %>
   </div>
 
-  <div id="add_list">
-    <%= link_to 'Add ToDo list', new_project_path %>
+  <div id="add_project">
+    <%= link_to new_project_path, class: 'btn btn-success btn-lg' do %>
+        <span class="glyphicon glyphicon-plus"></span>
+        'Add ToDo list'
+    <% end %>
   </div>
 </div>
