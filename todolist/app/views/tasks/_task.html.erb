@@ -1,23 +1,25 @@
-<% if !task.completed %>
-    <p id="task_<%= task.id %>" class="uncompleted">
-<% else %>
-    <p id="task_<%= task.id %>" class="completed">
-<% end %>
+<p id="task_<%= task.id %>" class="<%= task.completed ? 'completed' : 'uncompleted' %> list-group-item">
+  <%= check_box_tag 'complete', task.completed, task.completed,
+                    :data => {
+                        remote: true,
+                        url: url_for(
+                            action: 'complete',
+                            id: task.id,
+                            complete: task.completed,
+                            controller: :tasks),
+                        method: :put } %>
+  <%= task.name %>
 
-<%= check_box_tag 'complete', task.completed, task.completed,
-                  :data => {
-                      remote: true,
-                      url: url_for(
-                          action: 'complete',
-                          id: task.id,
-                          complete: task.completed,
-                          controller: :tasks),
-                      method: :put } %>
-<%= task.name %>
+  <%= link_to [task.project, task],
+              method: :delete,
+              data: {confirm: 'Are you sure?'},
+              remote: true do %>
+      <span id="delete" class="glyphicon glyphicon-trash controls"></span>
+  <% end %>
 
-<%= link_to '', [task.project, task],
-            method: :delete,
-            data: {confirm: 'Are you sure?'},
-            remote: true, class: 'controls', id: 'delete' %>
+  <%= link_to edit_project_task_path(project, task) do %>
+      <span id="edit" class="glyphicon glyphicon-pencil controls"></span>
+  <% end %>
 
-<%= link_to '', edit_project_task_path(project, task), class: 'controls', id: 'edit' %>
+  <span id="move" class="glyphicon glyphicon-move controls"></span>
+</p>
