@@ -4,7 +4,6 @@
 
 .container,
 .panel,
-#add_list,
 #new_project,
 .edit_project {
   width: 55%;
@@ -61,7 +60,7 @@
 }
 
 .field {
-  width: 83%;
+  width: 87%;
 }
 
 .add_task {
@@ -69,17 +68,19 @@
   text-align: center;
 }
 
-#add_list,
 #add_project,
 .edit_project {
   text-align: center;
+  margin-bottom: 10px;
 }
 
-#add_list a:hover,
-#add_project a:hover,
 .edit_project a:hover {
   background-color: transparent;
   color: inherit;
+}
+
+#add_project a {
+  color: white;
 }
 
 .form {
