@@ -1,25 +1,32 @@
-<p id="task_<%= task.id %>" class="<%= task.completed ? 'completed' : 'uncompleted' %> list-group-item">
-  <%= check_box_tag 'complete', task.completed, task.completed,
-                    :data => {
-                        remote: true,
-                        url: url_for(
-                            action: 'complete',
-                            id: task.id,
-                            complete: task.completed,
-                            controller: :tasks),
-                        method: :put } %>
-  <%= task.name %>
+<p id="task_<%= task.id %>" class="list-group-item">
+  <span>
+    <%= check_box_tag 'complete', task.completed, task.completed,
+                      :data => {
+                          remote: true,
+                          url: url_for(
+                              action: 'complete',
+                              id: task.id,
+                              complete: task.completed,
+                              controller: :tasks),
+                          method: :put } %>
+  </span>
+
+  <span id="task_<%= task.id %>_name"
+        class="task_name <%= 'completed' if task.completed %>">
+    <%= task.name %>
+  </span>
 
   <%= link_to [task.project, task],
               method: :delete,
               data: {confirm: 'Are you sure?'},
               remote: true do %>
-      <span id="delete" class="glyphicon glyphicon-trash controls"></span>
+      <span class="glyphicon glyphicon-trash controls delete"></span>
   <% end %>
 
-  <%= link_to edit_project_task_path(project, task) do %>
-      <span id="edit" class="glyphicon glyphicon-pencil controls"></span>
+  <%= link_to edit_project_task_path(project, task), remote: true do %>
+      <span id="task_<%= task.id %>_edit_icon" class="glyphicon glyphicon-pencil controls edit"></span>
   <% end %>
 
-  <span id="move" class="glyphicon glyphicon-move controls"></span>
-</p>
+  <span id="move_task_icon" class="glyphicon glyphicon-move controls move"></span>
+
+  <div id="edit_task_<%= task.id %>" class="edit_task"></div>

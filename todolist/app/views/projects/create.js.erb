@@ -1,0 +1,4 @@
+$('#projects').append('<%= j(render 'project', project: @project) %>');
+$('#project_<%= @project.id %>').hide().slideDown();
+$('#new_project').html('').slideUp();
+document.querySelector('#project_<%= @project.id %> #task_name').focus();

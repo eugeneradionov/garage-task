@@ -1,0 +1,3 @@
+$("#tasks_<%= @project.id %>").prepend("<%= j(render 'tasks/task', task: @task, project: @project) %>");
+$("#task_<%= @task.id %>").hide().slideDown();
+$('.field').val('');

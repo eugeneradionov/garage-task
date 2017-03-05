@@ -1,44 +1,15 @@
 <div class="container">
   <h1>ToDo List</h1>
-  <div class="panel-group">
-    <% @projects.each do |project| %>
-        
-        <div class="panel panel-default">
-          <% @tasks =  project.tasks.sort_by {|t| t.priority} %>
-
-          <div class="panel-heading">
-            <span class="header"><%= project.name %></span>
-
-            <%= link_to [project], method: :delete,
-                        data: { confirm: 'Are you sure?' },
-                        remote: true do %>
-                <span id="delete" class="glyphicon glyphicon-trash controls"></span>
-            <% end %>
-
-            <%= link_to edit_project_path(project) do %>
-                <span id="edit" class="glyphicon glyphicon-pencil controls"></span>
-            <% end %>
-
-            <%= form_for([project, project.tasks.build], remote: true) do |f| %>
-                <%= f.text_field :name, placeholder: 'Add a new task...', class: 'field', remote: true %>
-                <%= f.submit 'Add task', remote: true, class: 'btn btn-success btn-sm' %>
-            <% end %>
-          </div>
-
-          <div class="sortable-in">
-            <div class="panel-body tasks" data-update-url="<%= sort_project_tasks_url(project) %>">
-              <%= render (@tasks), project: project %>
-            </div>
-          </div>
-
-        </div>
-    <% end %>
+  <div id="projects" class="panel-group">
+    <%= render 'projects', projects: @projects %>
   </div>
 
+  <div id="new_project" class="panel panel-default new_project"></div>
+
   <div id="add_project">
-    <%= link_to new_project_path, class: 'btn btn-success btn-lg' do %>
-        <span class="glyphicon glyphicon-plus"></span>
-        'Add ToDo list'
+    <%= link_to new_project_path, class: 'btn btn-success btn-lg', remote: true do %>
+        <span id="add_project_image" class="glyphicon glyphicon-plus"></span>
+        <span id="add_project_text">Add ToDo list</span>
     <% end %>
   </div>
 </div>

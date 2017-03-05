@@ -1,9 +1,7 @@
-<div class="container">
-  <h1>New Project</h1>
+<h1>New Project</h1>
 
-  <%= render 'form', project: @project %>
+<%= render 'edit_project_form', project: @project %>
 
-  <div id="add_project">
-    <%= link_to 'Back', projects_path %>
-  </div>
+<div id="add_project">
+  <%= link_to 'Back', projects_path %>
 </div>

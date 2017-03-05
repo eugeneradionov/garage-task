@@ -1,0 +1,33 @@
+<div id="project_<%= project.id %>" class="panel panel-default">
+  <% @tasks =  project.tasks.sort_by {|t| t.priority} %>
+
+  <div class="panel-heading">
+    <span id="project_name_<%= project.id %>" class="header"><%= project.name %></span>
+    <%= link_to [project], method: :delete,
+                data: { confirm: 'Are you sure?' },
+                remote: true do %>
+        <span class="glyphicon glyphicon-trash controls delete"></span>
+    <% end %>
+
+    <%= link_to edit_project_path(project), remote: true do %>
+        <span id="project_<%= project.id %>_edit_icon" class="glyphicon glyphicon-pencil controls edit"></span>
+    <% end %>
+
+    <div class="edit_project" id="edit_project_<%= project.id %>"></div>
+
+    <%= form_for([project, project.tasks.build], remote: true) do |f| %>
+        <div class="add_task">
+          <%= f.text_field :name, placeholder: 'Add a new task...', class: 'field'%>
+          <%= f.submit 'Add task', class: 'btn btn-success btn-sm' %>
+        </div>
+    <% end %>
+  </div>
+
+  <div id="sortable_in_<%= project.id %>" class="sortable_in">
+    <div id="tasks_<%= project.id %>" class="panel-body tasks"
+         data-update-url="<%= sort_project_tasks_url(project) %>">
+      <%= render (@tasks), project: project %>
+    </div>
+  </div>
+
+</div>

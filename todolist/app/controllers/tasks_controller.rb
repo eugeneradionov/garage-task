@@ -5,6 +5,7 @@ class TasksController < ApplicationController
     @task = @project.tasks.create(task_params)
     respond_to do |format|
       format.html {redirect_to projects_path}
+      format.js { @project.id }
     end
   end
 
@@ -12,16 +13,27 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
     @task = @project.tasks.find(params[:id])
 
-    if @task.update(task_params)
-      redirect_to projects_path
-    else
-      render 'edit'
+    respond_to do |format|
+      if @task.update(task_params)
+        format.html { redirect_to projects_url, notice: 'Task was successfully updated.' }
+        format.js { @task }
+        format.json { render :show, status: :ok, location: @task }
+      else
+        format.html { redirect_to projects_url }
+        format.js
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def edit
     @project = Project.find(params[:project_id])
     @task = @project.tasks.find(params[:id])
+
+    respond_to do |format|
+      format.html { render :edit }
+      format.js { @task }
+    end
   end
 
   def show
@@ -37,6 +49,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       format.html {redirect_to projects_path}
+      format.js { @task }
     end
 
   end
@@ -48,6 +61,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       format.html {redirect_to projects_path}
+      format.js { @task }
     end
   end
 
@@ -55,11 +69,14 @@ class TasksController < ApplicationController
     params[:task].each_with_index do |id, index|
       Task.where('id = ?', id).update_all({priority: index+1})
     end
-    head :no_content
+
+    respond_to do |format|
+      #format.html {redirect_to projects_path}
+      format.js { @project = Project.find(params[:project_id]) }
+    end
   end
 
   def deadline
-
   end
 
   private

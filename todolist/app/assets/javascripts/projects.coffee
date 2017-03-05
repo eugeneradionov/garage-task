@@ -7,15 +7,23 @@ ready = ->
     $('.field').val('')
   jQuery ->
     $('.tasks').sortable
-      containment: ".sortable-in"
-      handle: "#move"
+      handle: "#move_task_icon"
       items: "> p"
       update: ->
         $.post($(this).data('update-url'), $(this).sortable('serialize') )
+#     axis: 'y'
+# Axis 'y' has some bug, when you click on handle and very quick move_task_icon mouse only left or right
+# not up or down element that you try to sort(drag) loose its position.
+# In my case element loose centered position and become draggable only by the left side.
+# That's why I commented line with axis property
 
 $(document).ready(ready)
 $(document).on 'turbolinks:load', ->
   ready()
+
+$(document).on 'ajaxSuccess', ->
+  ready()
+
 $ ->
   $('#datepicker').datepicker()
     #showOn: 'button'

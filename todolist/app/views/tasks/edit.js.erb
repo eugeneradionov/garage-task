@@ -1,0 +1,8 @@
+$('#edit_task_<%= @task.id %>')
+    .html("<%= j(render 'tasks/edit_task_form', project: @project) %>").slideToggle();
+
+$('#edit_task_<%= @task.id %>_name_field').val('').focus();
+
+$('#task_<%= @task.id %>_edit_icon').fadeOut(200, function () {
+    $(this).toggleClass("glyphicon-pencil glyphicon-remove").fadeIn(200)
+});

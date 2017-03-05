@@ -3,9 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .container,
-.panel,
-#new_project,
-.edit_project {
+.panel {
   width: 55%;
   margin: auto;
 }
@@ -17,7 +15,7 @@
 }
 
 .header {
-  font-size: 2em;
+  font-size: 3rem;
 }
 
 .completed {
@@ -29,28 +27,28 @@
   background-color: antiquewhite;
 }
 
-.tasks p {
-  font-size: 1.2em;
+.task_name {
+  font-size: 1.4em;
 }
 
-#edit,
-#delete,
-#move {
-  color: black;
+.edit,
+.delete,
+.move {
   font-size: 1.6rem;
 }
 
-#edit,
-#move {
+.edit,
+.move {
   margin-right: 0.7em;
 }
 
-#move:hover {
+.move:hover {
   cursor: move;
 }
 
 .controls {
   float: right;
+  color: black;
 }
 
 .controls:hover {
@@ -61,28 +59,61 @@
 
 .field {
   width: 87%;
+  height: 30px;
 }
 
-.add_task {
-  width: 15%;
-  text-align: center;
-}
-
-#add_project,
-.edit_project {
+#add_project {
   text-align: center;
   margin-bottom: 10px;
-}
-
-.edit_project a:hover {
-  background-color: transparent;
-  color: inherit;
 }
 
 #add_project a {
   color: white;
 }
 
-.form {
-  text-align: center;
+.new_project,
+.edit_project,
+.edit_task {
+  display: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#new_project label {
+  padding: 0;
+}
+
+.project_form {
+  display: inline;
+}
+
+#project_name_field {
+  margin-right: 10px;
+  margin-left: 5px;
+  padding: 0;
+}
+
+.edit_task_form label,
+.edit_project_form label {
+  padding: 0;
+  width: 5%;
+  margin-right: 10px;
+}
+
+.edit_task_form .btn input,
+.edit_project_form .btn input {
+  width: 25%;
+}
+
+.edit_task_name_field,
+.edit_project_name_field {
+  margin-right: 10px;
+  margin-left: 5px;
+  padding: 0;
+  width: 71.5%;
+  height: 30px;
+}
+
+.panel-default {
+  margin-bottom: 0.85em !important;
 }
