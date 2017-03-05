@@ -1,4 +1,13 @@
 $('#projects').append('<%= j(render 'project', project: @project) %>');
 $('#project_<%= @project.id %>').hide().slideDown();
-$('#new_project').html('').slideUp();
+$('#new_project').html('').slideUp(function () {
+    $('#add_project_text').text(function (i, v) {
+        return v === 'Add ToDo list' ? 'Close' : 'Add ToDo list'
+    });
+
+    $("#add_project_image").toggleClass("glyphicon-plus glyphicon-remove");
+});
+
+
+
 document.querySelector('#project_<%= @project.id %> #task_name').focus();
