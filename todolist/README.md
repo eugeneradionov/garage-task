@@ -4,15 +4,19 @@
  
 ###SQL queries
  
+ **Given tables**:
+ - tasks (id, name, status, project_id)
+ - projects (id, name)
+ 
  1. get all statuses, not repeating, alphabetically ordered
-
+ 
     ```sql 
     SELECT DISTINCT status
     FROM tasks
     ORDER BY status
     ```
  2. get the count of all tasks in each project, order by tasks count descending
-
+ 
     ```sql
     SELECT p.name AS 'Project', count(t.id) AS 'Tasks'
     FROM tasks t, projects p
