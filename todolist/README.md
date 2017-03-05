@@ -18,7 +18,7 @@
  2. get the count of all tasks in each project, order by tasks count descending
  
     ```sql
-    SELECT p.name AS 'Project', count(t.id) AS 'Tasks'
+    SELECT p.name AS "Project", count(t.id) AS "Tasks"
     FROM tasks t, projects p
     WHERE t.project_id = p.id
     GROUP BY p.name
@@ -27,7 +27,7 @@
  3. get the count of all tasks in each project, order by projects names
 
     ```sql
-    SELECT p.name AS 'Project', count(t.id) AS 'Tasks'
+    SELECT p.name AS "Project", count(t.id) AS "Tasks"
     FROM tasks t, projects p
     WHERE t.project_id = p.id
     GROUP BY p.name
@@ -57,20 +57,21 @@
     show the tasks count near each project. Mention that there can exist projects without tasks and tasks with project_id=NULL
 
     ```sql
-    SELECT p.name AS 'Project', count(t.id) AS 'Tasks'
+    SELECT p.name AS "Project", count(t.id) AS "Tasks"
     FROM tasks t,  projects p
     WHERE t.project_id = p.id 
     AND p.name LIKE '%a%'
-    AND t.project_id NOT NULL
+    AND t.project_id NOTNULL
     GROUP BY p.name
+    HAVING count(t.id) > 0
     ```
  6. get the list of tasks with duplicate names. Order alphabetically
 
      ```sql
     SELECT *, count(*)
-    FROM tasks
-    GROUP BY name
-    HAVING count(name) > 1
+    FROM tasks t
+    GROUP BY id
+    HAVING count(id) > 1
     ORDER BY name
      ```
  7. get the list of tasks having several exact matches of both name and status, from
@@ -81,6 +82,7 @@
     FROM tasks t, projects p
     WHERE t.name = t.status
     AND p.name = 'Garage'
+    GROUP BY t.id
     ORDER BY  count(t.id)
     ```
  8. get the list of project names having more than 10 tasks in status ‘completed’. Order
