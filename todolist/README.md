@@ -34,12 +34,25 @@
     ORDER BY p.name
     ```
  4. get the tasks for all projects having the name beginning with “N” letter
-
+    
+    Because of question wording I cannot fully understand what(project or task) has name beginning with "N" letter.
+    That's why I created two queries for two different cases.
+    
+    The first one, when project name starts from "N":
+    
     ```sql
-    SELECT *
-    FROM tasks
-    WHERE name LIKE 'N%'
+    SELECT t.*
+    FROM tasks t, projects p
+    WHERE p.name LIKE 'N%'
     ```
+    
+    And the second, when task name starts from "N"
+    
+    ```sql
+    SELECT t.*
+    FROM tasks t, projects p
+    WHERE t.name LIKE 'N%'
+     ```
  5. get the list of all projects containing the ‘a’ letter in the middle of the name, and
     show the tasks count near each project. Mention that there can exist projects without tasks and tasks with project_id=NULL
 
