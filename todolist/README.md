@@ -1,6 +1,6 @@
 # README
 
-#This is the test task for RubyGarage courses
+#Test task for RubyGarage courses
  
 ###SQL queries
  
