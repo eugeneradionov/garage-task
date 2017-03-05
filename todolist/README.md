@@ -55,7 +55,9 @@
      ```
  5. get the list of all projects containing the ‘a’ letter in the middle of the name, and
     show the tasks count near each project. Mention that there can exist projects without tasks and tasks with project_id=NULL
-
+    
+    _Note:_ `NOTNULL` is PostgreSQL equivalent for `NOT NULL`.
+    
     ```sql
     SELECT p.name AS "Project", count(t.id) AS "Tasks"
     FROM tasks t,  projects p
