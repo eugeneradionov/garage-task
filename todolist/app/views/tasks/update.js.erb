@@ -1,6 +1,7 @@
 $("#edit_task_<%= @task.id %>").slideUp();
 var currentClass = $("#task_<%= @task.id %>_name").attr('class');
 $("#task_<%= @task.id %>_name").replaceWith("<%= j render 'task_name', task: @task %>");
+
 $("#task_<%= @task.id %>_edit_icon").fadeOut(200, function () {
     $(this).toggleClass("glyphicon-pencil glyphicon-remove").fadeIn(200)
 });

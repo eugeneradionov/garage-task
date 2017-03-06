@@ -1,0 +1,6 @@
+$('#datepicker_for_task_<%= @task.id %>').slideToggle();
+$('#datepicker_for_task_<%= @task.id %>').find('#task_deadline').val('').focus();
+
+$('#task_<%= @task.id %>').find('.date_picker_icon').fadeOut(200, function () {
+    $(this).toggleClass("glyphicon-calendar glyphicon-remove").fadeIn(200)
+});

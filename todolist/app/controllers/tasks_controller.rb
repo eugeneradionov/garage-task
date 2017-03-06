@@ -72,6 +72,24 @@ class TasksController < ApplicationController
     end
   end
 
+  def deadline
+    @task = Task.find(params[:id])
+    @task.deadline = Date.parse(params[:task][:deadline])
+    @task.save
+    respond_to do |format|
+      format.html {redirect_to projects_path}
+      format.js { @task }
+    end
+  end
+
+  def deadline_show
+    @task = Task.find(params[:id])
+    respond_to do |format|
+      format.html {redirect_to projects_path}
+      format.js { @task }
+    end
+  end
+
   def sort
     params[:task].each_with_index do |id, index|
       Task.where('id = ?', id).update_all({priority: index+1})
@@ -83,11 +101,8 @@ class TasksController < ApplicationController
     end
   end
 
-  def deadline
-  end
-
   private
     def task_params
-      params.require(:task).permit(:name, :project_id)
+      params.require(:task).permit(:name, :project_id, :deadline => [])
     end
 end

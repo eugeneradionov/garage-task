@@ -1,5 +1,23 @@
 <div id="task_<%= task.id %>" class="list-group-item task">
+
+  <%= link_to deadline_task_path(task), remote: true do %>
+      <span class="task_controls glyphicon glyphicon-calendar controls date_picker_icon"></span>
+  <% end %>
   <span>
+
+    <div id="datepicker_for_task_<%= task.id %>" class="datepicker_for_task">
+      <%= bootstrap_form_for(:task, layout: :inline,
+                             url: deadline_task_path(task), remote: true) do |f| %>
+          <div class="input-group date datepicker">
+            <%= f.date_field :deadline, hide_label: true, placeholder: 'dd/mm/YYYY' %>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+            <%= f.submit 'Set task deadline', class: 'btn btn-info' %>
+      <% end %>
+    </div>
+
     <%= check_box_tag 'complete', task.completed, task.completed,
                       :data => {
                           remote: true,
@@ -8,7 +26,7 @@
                               id: task.id,
                               complete: task.completed,
                               controller: :tasks),
-                          method: :put } %>
+                          method: :post } %>
   </span>
 
   <%= link_to [task.project, task],
@@ -33,4 +51,3 @@
 </div>
 
 <div id="edit_task_<%= task.id %>" class="edit_task"></div>
-

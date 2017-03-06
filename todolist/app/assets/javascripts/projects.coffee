@@ -3,6 +3,9 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 ready = ->
+  $('form').enableClientSideValidations();
+  $('.datepicker').datetimepicker
+    format: 'DD/MM/YYYY'
   jQuery ->
     $('.field').val('')
   jQuery ->
@@ -20,12 +23,5 @@ ready = ->
 $(document).ready ->
   ready()
 
-$(document).on 'turbolinks:load ajaxSuccess ajaxComplete ajaxStart ajaxStop', ->
+$(document).on 'turbolinks:load ajaxSuccess ajaxComplete', ->
   ready()
-
-
-#$ ->
-#  $('#datepicker').datepicker()
-#    showOn: 'button'
-#    buttonImageOnly: true
-#    buttonText: 'Select deadline'
