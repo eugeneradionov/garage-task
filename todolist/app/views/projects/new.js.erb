@@ -5,11 +5,12 @@ $('#new_project').html("<%= j(render 'projects/new_project_form', project: @proj
         });
 
         $("#add_project_image").toggleClass("glyphicon-plus glyphicon-remove");
+
     });
 
 $("html, body").animate({ scrollTop: $(document).height() }, "slow");
 
-$('#project_name_field').focus();
+//$('#project_name_field').focus();
 
 $('#close_new_project_form').click( function() {
     $('#new_project').slideToggle();
@@ -20,3 +21,5 @@ $('#close_new_project_form').click( function() {
 
     $("#add_project_image").toggleClass("glyphicon-plus glyphicon-remove");
 });
+
+$("#new_project_form").enableClientSideValidations();

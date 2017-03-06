@@ -6,7 +6,6 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.all.sort_by {|p| p.created_at}
     @project = @projects.find(params[:id])
-
     respond_to do |format|
       format.html
       format.js
@@ -23,7 +22,7 @@ class ProjectsController < ApplicationController
     @project = Project.new
 
     respond_to do |format|
-      format.html {redirect_to new_project_url}
+      format.html
       format.js {@project}
     end
   end
@@ -31,7 +30,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     respond_to do |format|
-      format.html {render :edit }
+      format.html
       format.js {@id = @project.id}
     end
   end
@@ -62,7 +61,7 @@ class ProjectsController < ApplicationController
         format.js { @id = @project.id }
         format.json { render :show, status: :ok, location: @project }
       else
-        format.html { redirect_to projects_url }
+        format.html {render :edit }
         format.js
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end

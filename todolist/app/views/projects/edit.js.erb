@@ -1,6 +1,8 @@
 $("#edit_project_<%= @id %>")
     .html("<%= j(render 'projects/edit_project_form', project: @project) %>").slideToggle();
 
+$("#edit_project_<%= @id %>_form").enableClientSideValidations();
+
 $('#edit_project_<%= @id %>_name_field').val('').focus();
 
 $("#project_<%= @id %>_edit_icon").fadeOut(200, function () {

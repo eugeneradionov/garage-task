@@ -15,12 +15,13 @@
 
     <div class="edit_project" id="edit_project_<%= project.id %>"></div>
 
-    <%= form_for([project, project.tasks.build], remote: true) do |f| %>
-        <div class="add_task">
-          <%= f.text_field :name, placeholder: 'Add a new task...', class: 'field'%>
-          <%= f.submit 'Add task', class: 'btn btn-success btn-sm' %>
-        </div>
+    <%= form_for([project, project.tasks.build], remote: true, validate: true,
+                 html: {class: 'add_task',
+                        id: "new_task_form_for_project_#{project.id}"}) do |f| %>
+        <%= f.text_field :name, placeholder: 'Add a new task...', class: 'field'%>
+        <%= f.submit 'Add task', class: 'btn btn-success btn-sm' %>
     <% end %>
+    <div class="errors"></div>
   </div>
 
   <div id="sortable_in_<%= project.id %>" class="sortable_in">

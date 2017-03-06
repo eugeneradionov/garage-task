@@ -1,4 +1,4 @@
-<p id="task_<%= task.id %>" class="list-group-item">
+<div id="task_<%= task.id %>" class="list-group-item task">
   <span>
     <%= check_box_tag 'complete', task.completed, task.completed,
                       :data => {
@@ -11,22 +11,26 @@
                           method: :put } %>
   </span>
 
-  <span id="task_<%= task.id %>_name"
-        class="task_name <%= 'completed' if task.completed %>">
-    <%= task.name %>
-  </span>
-
   <%= link_to [task.project, task],
               method: :delete,
               data: {confirm: 'Are you sure?'},
               remote: true do %>
-      <span class="glyphicon glyphicon-trash controls delete"></span>
+      <span class="task_controls glyphicon glyphicon-trash controls delete"></span>
   <% end %>
 
   <%= link_to edit_project_task_path(project, task), remote: true do %>
-      <span id="task_<%= task.id %>_edit_icon" class="glyphicon glyphicon-pencil controls edit"></span>
+      <span id="task_<%= task.id %>_edit_icon"
+            class="task_controls glyphicon glyphicon-pencil controls edit"></span>
   <% end %>
 
-  <span id="move_task_icon" class="glyphicon glyphicon-move controls move"></span>
+  <span id="move_task_icon"
+        class="task_controls glyphicon glyphicon-move controls move"></span>
 
-  <div id="edit_task_<%= task.id %>" class="edit_task"></div>
+  <p id="task_<%= task.id %>_name" class="task_name <%= 'completed' if task.completed %>">
+    <%= task.name %>
+  </p>
+
+</div>
+
+<div id="edit_task_<%= task.id %>" class="edit_task"></div>
+

@@ -4,7 +4,8 @@
       <span id="close_new_project_form" class="glyphicon glyphicon-remove controls edit"></span>
   <% end %>
 
-  <%= form_for(project, remote: true, html: { class: 'project_form' }) do |f| %>
+  <%= form_for(project, remote: true, validate: true,
+               html: { class: 'project_form row', id: 'new_project_form'}) do |f| %>
       <% if project.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -17,12 +18,11 @@
           </div>
       <% end %>
 
-      <div class="project_form row">
-        <%= f.label :project_name, class: 'col-md-2' %>
-        <%= f.text_field :name, placeholder: @project.name,
-                         id: 'project_name_field',
-                         class: 'col-md-7' %>
-        <%= f.submit class: 'btn btn-warning btn-sm col-md-2' %>
-      </div>
+      <%= f.label :project_name, class: 'col-md-2' %>
+      <%= f.text_field :name,
+                       id: 'project_name_field',
+                       class: 'col-md-7' %>
+      <%= f.submit class: 'btn btn-warning btn-sm col-md-2' %>
   <% end %>
+  <div class="errors"></div>
 </div>

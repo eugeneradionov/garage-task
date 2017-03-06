@@ -8,7 +8,7 @@ ready = ->
   jQuery ->
     $('.tasks').sortable
       handle: "#move_task_icon"
-      items: "> p"
+      items: "> div"
       update: ->
         $.post($(this).data('update-url'), $(this).sortable('serialize') )
 #     axis: 'y'
@@ -17,15 +17,15 @@ ready = ->
 # In my case element loose centered position and become draggable only by the left side.
 # That's why I commented line with axis property
 
-$(document).ready(ready)
-$(document).on 'turbolinks:load', ->
+$(document).ready ->
   ready()
 
-$(document).on 'ajaxSuccess', ->
+$(document).on 'turbolinks:load ajaxSuccess ajaxComplete ajaxStart ajaxStop', ->
   ready()
 
-$ ->
-  $('#datepicker').datepicker()
-    #showOn: 'button'
-    #buttonImageOnly: true
-    #buttonText: 'Select deadline'
+
+#$ ->
+#  $('#datepicker').datepicker()
+#    showOn: 'button'
+#    buttonImageOnly: true
+#    buttonText: 'Select deadline'

@@ -2,6 +2,7 @@
 // They will automatically be included in application.scss.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 .container,
 .panel {
   width: 55%;
@@ -23,7 +24,7 @@
   color: #888888;
 }
 
-.tasks p:hover {
+.task:hover {
   background-color: antiquewhite;
 }
 
@@ -31,10 +32,10 @@
   font-size: 1.4em;
 }
 
-.edit,
-.delete,
-.move {
-  font-size: 1.6rem;
+.task_name {
+  word-wrap: break-word;
+  width: 70%;
+  display: inline;
 }
 
 .edit,
@@ -47,6 +48,7 @@
 }
 
 .controls {
+  font-size: 1.6rem;
   float: right;
   color: black;
 }
@@ -93,8 +95,13 @@
   padding: 0;
 }
 
-.edit_task_form label,
-.edit_project_form label {
+.edit_task_form label {
+  padding: 0;
+  width: 5%;
+  margin-right: 10px;
+}
+
+.project_name_label {
   padding: 0;
   width: 5%;
   margin-right: 10px;
@@ -116,4 +123,9 @@
 
 .panel-default {
   margin-bottom: 0.85em !important;
+}
+
+.errors {
+  width: 100%;
+  color: crimson;
 }

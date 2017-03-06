@@ -1,8 +1,11 @@
-<%= form_for(project, remote: true, html: { class: 'edit_project_form' }) do |f| %>
-    <%= f.label :name %>
+<%= form_for(project, remote: true, validate: true,
+             html: { class: 'edit_project_form',
+                     id: "edit_project_#{project.id}_form"}) do |f| %>
+    <%= f.label :name, class: 'project_name_label' %>
     <%= f.text_field :name,
                      placeholder: @project.name,
                      class: 'edit_project_name_field',
-                     id: "edit_project_#{project.id}_name_field"%>
+                     id: "edit_project_#{@project.id}_name_field" %>
     <%= f.submit class: 'btn btn-warning btn-sm' %>
 <% end %>
+<div class="errors"></div>

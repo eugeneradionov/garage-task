@@ -6,3 +6,5 @@ $('#edit_task_<%= @task.id %>_name_field').val('').focus();
 $('#task_<%= @task.id %>_edit_icon').fadeOut(200, function () {
     $(this).toggleClass("glyphicon-pencil glyphicon-remove").fadeIn(200)
 });
+
+$('#edit_task_<%= @task.id %>_form').enableClientSideValidations();

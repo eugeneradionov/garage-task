@@ -21,3 +21,4 @@
 .byebug_history
 #Ignore .idea folder
 .idea/
+/config/secrets.yml

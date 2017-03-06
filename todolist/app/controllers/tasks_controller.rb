@@ -1,11 +1,18 @@
 class TasksController < ApplicationController
 
+  def new
+    respond_to do |format|
+      format.html
+      format.js { @project.id }
+    end
+  end
+
   def create
     @project = Project.find(params[:project_id])
     @task = @project.tasks.create(task_params)
     respond_to do |format|
       format.html {redirect_to projects_path}
-      format.js { @project.id }
+      format.js { @project }
     end
   end
 
@@ -31,7 +38,7 @@ class TasksController < ApplicationController
     @task = @project.tasks.find(params[:id])
 
     respond_to do |format|
-      format.html { render :edit }
+      format.html
       format.js { @task }
     end
   end
