@@ -1,8 +1,10 @@
 # README
 
-#Test task for RubyGarage courses
- 
-###SQL queries
+# Test task for RubyGarage courses
+
+### [Try it on Heroku](https://pacific-river-92764.herokuapp.com/)
+
+### SQL queries
  
  **Given tables**:
  - tasks (id, name, status, project_id)
